@@ -16,6 +16,33 @@ def gen(camera):
 # Create your views here.
 
 
-def pose_feed(request):
+# make your set 페이지
+
+def set_create(request):
+    pass
+
+
+def set_detail(request):
+    pass
+
+
+def set_delete(request):
+    pass
+
+
+def set_list(request):
+    pass
+
+
+# training 페이지
+def train_get(request, pk):
+    pass
+
+
+def train_start(request, pk):
     return StreamingHttpResponse(gen(PoseWebCam()),
                                  content_type='multipart/x-mixed-replace; boundary=frame')
+
+
+def train_result(request, pk):
+    pass

@@ -27,6 +27,11 @@ class Set(models.Model):
     user = models.ForeignKey(
         CustomUser, on_delete=models.CASCADE)
     date = models.DateField()
+    type = models.Choices(
+        ('상체', '상체')
+        ('하체', '하체')
+        ('기타', '기타')
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     # updated_at = models.DateTimeField(auto_now=True)
 

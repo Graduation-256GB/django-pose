@@ -6,6 +6,8 @@ from django.conf import settings
 import os
 import math
 from tensorflow.keras.models import load_model
+from .models import CustomUser, ExerciseLog, ExerciseSet
+from .models import Set
 poseEstimationModel = load_model(
     os.path.join(settings.BASE_DIR, 'pose/my_model.h5'))
 
@@ -23,6 +25,7 @@ class PoseWebCam(object):
         self.frame_cnt = 0
         self.allkeypoints = []
         self.outputkeypoints = []
+        # self.exerciseset=Set.objects.get(pk=pk)
 
         """
         # mediapipe 키포인트 33개 중에서내 사용될 12개의 키포인트
@@ -72,6 +75,11 @@ class PoseWebCam(object):
 
                 predicted_pose = self.detect_and_predict_pose()  # 예측된 포즈(라벨)
                 print(predicted_pose)
+                set_exercise = ExerciseSet.objects.get(pk=1)
+                user = CustomUser.objects.get(pk=1)
+                ExerciseLog.objects.create(
+                    user=user, set_exercise=set_exercise)
+
                 # 예측된 포즈(라벨) 출력
                 """
                 font = ImageFont.truetype("fonts/gulim.ttc", 20)
